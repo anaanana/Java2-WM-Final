@@ -1,0 +1,31 @@
+#BlueJ class context
+comment0.target=Game
+comment0.text=\n\ \ Die\ Klasse\ Game\ ist\ f\u00FCr\ Informationen\ zu\ teilnehmenden\ Spielnationen\ der\ \n\ \ Weltmeisterschaft\ verantwortlich.\ Sowohl\ die\ Klasse\ Groups,\ als\ auch\ die\ \n\ \ Klasse\ Game\ beziehen\ sich\ auf\ Methoden\ der\ Klasse\ Nation,\ um\ landesspezi-\n\ \ fische\ Details\ zu\ erhalten.\n\ \n\ \ Folgende\ Methoden\ sind\ in\ der\ Klasse\ Nation\ implementiert\:\n\ \ -\ setInformation(int\ nationGoals,\ int\ nationPoints);\n\ \ -\ getInformation();\n\ \ -\ getInformationArray();\n\ \ \n
+comment1.params=
+comment1.target=Game()
+comment1.text=\n\ Konstruktor\ f\u00FCr\ Objekte\ der\ Klasse\ Spiel\n
+comment10.params=
+comment10.target=void\ getGames()
+comment11.params=groupName
+comment11.target=void\ getGamesFor1Group(java.lang.String)
+comment12.params=
+comment12.target=java.util.ArrayList\ setResult()
+comment12.text=public\ void\ setGameResult(\ String\ groupName,\ String\ nation1,\ String\ nation2,\ int\ goals1,\ int\ goals2)\n\ \ \ \ {\n\ \ \ \ //Groups\ groupNew\ \=\ groups.get(groupName);\n\ \ \ \ ArrayList\ <Groups>\ keys\ \=\ new\ ArrayList<>();\n\ \ \ \ Groups\ groupGame\ \=\ groups.get(groupName);\n\ \ \ \ for\ (String\ key\:\ groups.keySet())\ {\n\ \ \ \ keys.add(groups.get(key));\n\ \ \ \ System.out.println(keys);\n\ \ \ \ }\n\ \ \ \ for\ (int\ i\=0;i<keys.size();i++)\ {\n\ \ \ \ groupGame\ \=\ keys.get(i);\n\ \ \ \ groupGame.setResult(nation1,\ nation2,\ goals1,goals2);\n\ \ \ \ System.out.println(groupGame.setResult(nation1,\ nation2,\ goals1,goals2));\n\ \ \ \ }\n\n}
+comment2.params=
+comment2.target=void\ addGroupsToGame()
+comment2.text=\n\ Ein\ Beispiel\ einer\ Methode\ -\ ersetzen\ Sie\ diesen\ Kommentar\ mit\ Ihrem\ eigenen\n\ \n\ @param\ \ y\ \ \ \ ein\ Beispielparameter\ f\u00FCr\ eine\ Methode\n\ @return\ \ \ \ \ \ \ \ die\ Summe\ aus\ x\ und\ y\n
+comment3.params=key
+comment3.target=boolean\ containsGroup(java.lang.String)
+comment4.params=
+comment4.target=java.util.ArrayList\ getAllGroups()
+comment5.params=newGroup
+comment5.target=void\ addGroup(java.lang.String)
+comment6.params=groupName\ nationName\ nationGoals\ nationPoints
+comment6.target=void\ addNationToGroup(java.lang.String,\ java.lang.String,\ int,\ int)
+comment7.params=
+comment7.target=void\ getAllNationsKeys()
+comment8.params=
+comment8.target=java.util.ArrayList\ getAllNationsValues()
+comment9.params=groupName\ nationName
+comment9.target=java.lang.String\ getNationDetails(java.lang.String,\ java.lang.String)
+numComments=13
