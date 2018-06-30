@@ -49,11 +49,8 @@ public class Game
         getGames();
     }
 
-    /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
-     * 
-     * @param  y    ein Beispielparameter für eine Methode
-     * @return        die Summe aus x und y
+    /*
+     * Die HashMap groups wird befüllt
      */
     private void addGroupsToGame()
     {
@@ -67,6 +64,10 @@ public class Game
         groups.put("H",new Groups("H"));
     }
 
+    /*
+     * Es wird geprüft, ob eine Gruppe (Key) in der HashMap ist
+     * 
+     */
     private boolean containsGroup(String key)
 
     {
@@ -79,6 +80,10 @@ public class Game
         }
     }
 
+    /*
+     * Es werden alle teilnehmenden Gruppen als ArrayList ausgegeben.
+     * 
+     */
     public ArrayList<String> getAllGroups()
     {
         ArrayList <String> allGroups = new ArrayList<>();
@@ -89,18 +94,32 @@ public class Game
         return allGroups;
     }
 
+    /*
+     * Eine Gruppe wird hinzugefügt.
+     */
     public void addGroup(String newGroup)
     {
         groups.put(newGroup,new Groups(newGroup));
     }
 
+    /*
+     * Eine Nation wird zu einer Gruppe hinzugefügt.
+     * Fehleingabe berücksichtigt.
+     */
     public void addNationToGroup(String groupName, String nationName, int nationGoals, int nationPoints)
     {
-        groups.put(groupName, new Groups (groupName));
-        Groups groupNew = groups.get(groupName);
-        System.out.println(groupNew.addNationToGroup(nationName, nationGoals, nationPoints));
+        if (nationGoals == 0){
+            if (nationPoints == 0){ groups.put(groupName, new Groups (groupName));
+                Groups groupNew = groups.get(groupName);
+                System.out.println(groupNew.addNationToGroup(nationName, nationGoals, nationPoints));
+            } else {System.out.println("Check Input. Eine neue Nation muss mit 0 Punkten beginnen.");}
+
+        } else {System.out.println("Check Input. Eine neue Nation muss mit 0 Gesamttoren beginnen.");}
     }
 
+    /*
+     * Alle Nationen Keys - also alle Nationennamen - werden ausgegeben.
+     */
     public void getAllNationsKeys()
     {
         ArrayList <Groups> keys = new ArrayList<>();
@@ -113,27 +132,43 @@ public class Game
         }
     }
 
-    public ArrayList <String> getAllNationsValues()
+    /*
+     * Alle Nationen Values - also alle Informationen zu Nationen - werden ausgegeben.
+     */
+    public void getAllNationsValues()
     {
         ArrayList <Groups> keys = new ArrayList<>();
-        ArrayList <String> keys2 = new ArrayList<>();
+
         for (String key: groups.keySet()) {
             keys.add(groups.get(key));
         }
         for (int i=0;i<keys.size();i++) {
-            Groups values = keys.get(i);
-            keys2 = values.getAllValues();
-           
+            keys.get(i);
+            System.out.println(keys.get(i).getAllValues());
+
         }
-        return keys2;
+
     }
 
+    /*
+     * Zu einer bestimmten Nation können Informationen abgerufen werden.
+     * Fehleingaben teilweise berücksichtigt. Es fehlt die Überprüfung, ob nationName in der HashMap
+     * eingetragen ist.
+     */
     public String getNationDetails(String groupName, String nationName ) 
     {
-        Groups nationDetail = groups.get(groupName);
-        return nationDetail.getNationInformation(nationName);
+
+        if (containsGroup(groupName) == true ){ 
+            Groups nationDetail = groups.get(groupName);
+            return nationDetail.getNationInformation(nationName);
+        } else { System.out.println("Diese Gruppe spielt nicht mit.");
+        }
+        return nationName;
     }
 
+    /*
+     * Alle Spielpaarungen für alle Gruppen.
+     */
     public void getGames()
     {
         ArrayList <Groups> group = new ArrayList<>();
@@ -147,62 +182,60 @@ public class Game
         }
     }
 
+    /*
+     * Alle Spielpaarungen für 1 Gruppe.
+     */
     public void getGamesFor1Group(String groupName)
     {
-        ArrayList <Groups> games = new ArrayList<>();
         Groups groupGame = groups.get(groupName);
-        for (String key : groups.keySet())
-        {
-            games.add(groups.get(key));
-        }
         System.out.println(groupGame.getGamePossibilities());
     }
 
-    /*public void setResults (String groupName, String nation1, String nation2, int goals1, int goals2)
+    /*
+     * Alle eingetragenen Ergebnisse werden angezeigt.
+     */
+    public void getResults()
     {
-    int points1 = 0;
-    int points2 = 0;
-
-    ArrayList<String> nation1Results = new ArrayList<>();
-    ArrayList<String> nation2Results = new ArrayList<>();
-
-    if (goals1 > goals2) 
-    {points1=3;}
-    if (goals1 < goals2) 
-    {points2=3;}
-    if(goals1 == goals2){
-    points1=1;
-    points2=1;
+        ArrayList <Groups> group = new ArrayList<>();
+        for (String key : groups.keySet())
+        {
+            group.add(groups.get(key));
+        }
+        for (int i=0;i<group.size();i++) {
+            Groups values = group.get(i);
+            System.out.println(values.getResults()); 
+        }
     }
 
-    Groups groupNew = groups.get(groupName);
-    //nation1Results.add(groupNew.setResult(nation1, goals1,points1));
-    nation1Results.add(groupNew.getNationInformation(nation1));
-    //nation2Results.add(groupNew.setResult(nation2,goals2,points2));
-
-    }*/
-
-    /*public void setGameResult( String groupName, String nation1, String nation2, int goals1, int goals2)
+    /*
+     * Ergebnisse für ein Spiel können gesetzt werden. 
+     * Fehleingaben teilweise berücksichtigt. Leider lassen sich noch Spiele mehrfach eintragen,
+     * d.h. konkret sie werden nicht überschrieben sondern hinzugefügt. Ich bräuchte dafür eine Suche, die
+     * checkt, ob der String im Array die Spielkombination bereits beinhaltet. Dafür hätte ich, mit mehr Zeit,
+     * die split() Methode verwenden können. 
+     * 
+     */
+    public void setResults (String groupName, String nation1, String nation2, int goals1, int goals2)
     {
-    //Groups groupNew = groups.get(groupName);
-    ArrayList <Groups> keys = new ArrayList<>();
-    Groups groupGame = groups.get(groupName);
-    for (String key: groups.keySet()) {
-    keys.add(groups.get(key));
-    System.out.println(keys);
-    }
-    for (int i=0;i<keys.size();i++) {
-    groupGame = keys.get(i);
-    groupGame.setResult(nation1, nation2, goals1,goals2);
-    System.out.println(groupGame.setResult(nation1, nation2, goals1,goals2));
-    }
+        ArrayList <Groups> group = new ArrayList<>();
 
-    }*/
-    public ArrayList <String> setResult()
-    {
-       ArrayList <String> games = new ArrayList<>();
-       games = getAllNationsValues();
-       return games;
+        if (nation1 != nation2)
+        {
+            if(goals1>=0 && goals2 >=0){
+                for (String key : groups.keySet())
+                {
+                    group.add(groups.get(key));
+                }
+                for (int i=0;i<group.size();i++) {
+                    Groups values = group.get(i);
+                    System.out.println(values.setResult(nation1, nation2, goals1, goals2)); 
+                }
+            } else {System.out.println("Check Input. Tore können keine negativen Zahlen sein.");
+
+            }
+        } else {System.out.println("Check Input. Nationen können nicht gegen sich selbst spielen.");
+
+        }
     }
 }
 

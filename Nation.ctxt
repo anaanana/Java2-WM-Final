@@ -1,26 +1,19 @@
 #BlueJ class context
 comment0.target=Nation
-comment0.text=\n\ \ Die\ Klasse\ Nation\ ist\ f\u00FCr\ Informationen\ zu\ teilnehmenden\ Spielnationen\ der\ \n\ \ Weltmeisterschaft\ verantwortlich.\ Sowohl\ die\ Klasse\ Groups,\ als\ auch\ die\ \n\ \ Klasse\ Game\ beziehen\ sich\ auf\ Methoden\ der\ Klasse\ Nation,\ um\ landesspezi-\n\ \ fische\ Details\ zu\ erhalten.\n\ \n\ \ Folgende\ Methoden\ sind\ in\ der\ Klasse\ Nation\ implementiert\:\n\ \ -\ setInformation(int\ nationGoals,\ int\ nationPoints);\n\ \ -\ getInformation();\n\ \ -\ getInformationArray();\n\ \ \n
+comment0.text=\n\ \ Die\ Klasse\ Nation\ ist\ f\u00FCr\ Informationen\ zu\ teilnehmenden\ Spielnationen\ der\ \n\ \ Weltmeisterschaft\ verantwortlich.\ Sowohl\ die\ Klasse\ Groups,\ als\ auch\ die\ \n\ \ Klasse\ Game\ beziehen\ sich\ auf\ Methoden\ der\ Klasse\ Nation,\ um\ landesspezi-\n\ \ fische\ Details\ zu\ erhalten.\n\ \n
 comment1.params=nationName\ gameGoals\ nationGoals\ nationPoints
 comment1.target=Nation(java.lang.String,\ int,\ int,\ int)
-comment1.text=\n\ Konstruktor\n\ \n\ Im\ Konstruktor\ werden\ die\ Attribute\ initialisiert.\n\ \n\ Beim\ Erzeugen\ einer\ Instanz\ sollen\ \u00FCber\ Parameter\ der\ Nationenname\n\ (String\ nationName),\ die\ Gesamttore\ (int\ nationGoals)\ und\ die\ Gesamt-\n\ punkte\ (int\ nationPoints)\ \u00FCbergeben\ werden.\ Den\ Instanzvariablen\ wird\n\ daf\u00FCr\ der\ Wert\ der\ Parametereingaben\ zugewiesen.\ Dies\ geschieht\ im\ Falle\n\ des\ Nationennamen\ direkt\ im\ Konstruktur\ (this.nationName\ \=\ nationName).\n\ Gesamtpunktzahl\ und\ -tore\ werden\ indirekt\ zugewiesen,\ indem\ sie\ zu\ Parametern\ \n\ der\ Methode\ setInformation()\ werden.\ Auch\ diese\ wird\ beim\ Erzeugen\ einer\ \n\ neuen\ Instanz\ aufgerufen\ (Informationen\ zur\ Methode\ weiter\ unten).\ \n\n\ Au\u00DFerdem\ wird\ eine\ ArrayList\ mit\ dem\ Namen\ nationInfo\ erzeugt.\n\ \n
+comment1.text=\n\ Konstruktor\n\ \n\ Beim\ Erzeugen\ einer\ Instanz\ sollen\ \u00FCber\ Parameter\ der\ Nationenname\n\ (String\ nationName),\ die\ Gesamttore\ (int\ nationGoals)\ und\ die\ Gesamt-\n\ punkte\ (int\ nationPoints)\ \u00FCbergeben\ werden.\ Den\ Instanzvariablen\ wird\n\ daf\u00FCr\ der\ Wert\ der\ Parametereingaben\ zugewiesen.\ Dies\ geschieht\ im\ Falle\n\ des\ Nationennamen\ direkt\ im\ Konstruktur\ (this.nationName\ \=\ nationName).\n\ Gesamtpunktzahl\ und\ -tore\ werden\ indirekt\ zugewiesen,\ indem\ sie\ zu\ Parametern\ \n\ der\ Methode\ setInformation()\ werden.\ Auch\ diese\ wird\ beim\ Erzeugen\ einer\ \n\ neuen\ Instanz\ aufgerufen\ (Informationen\ zur\ Methode\ weiter\ unten).\ \n\n\ Au\u00DFerdem\ wird\ eine\ ArrayList\ mit\ dem\ Namen\ nationInfo\ erzeugt.\n\ \n
 comment2.params=nationGoals\ nationPoints
 comment2.target=void\ setInformation(int,\ int)
 comment2.text=\n\ Die\ Methode\ setInformation()\ liefert\ als\ R\u00FCckgabe\ das\ Array\ info\n\ mit\ Strings.\ Das\ Array\ wird\ in\ dieser\ Methode\ erstellt.\ Es\ beinhaltet\n\ die\ landesspezifischen\ Detailinformationen\ wie\ Nationenname,\ Gesamttore\ und\n\ -punkte.\ Da\ Tore\ und\ Punkte\ vom\ Datentyp\ Integer\ sind,\ m\u00FCssen\ diese\ zu\ \n\ Strings\ umgewandelt\ werden\ (z.B.\ Integer.toString(this.nationGoals)).\ W\u00FCrde\n\ man\ dies\ nicht\ tun,\ k\u00F6nnte\ aufgrund\ der\ unterschiedlichen\ Datentypen\ kein\ \n\ String-Array\ zur\u00FCckgeliefert\ werden\ k\u00F6nnen.\n\ \n\ Zuvor\ wurden\ die\ \u00DCbergabeparameter\ int\ nationGoals\ und\ int\ nationPoints\n\ den\ Instanzvariablen\ nationGoals\ bzw.\ nationPoints\ zugewiesen.\ Dies\ ist\ \n\ notwendig,\ um\ die\ Methode\ im\ Konstruktor\ sinnvoll\ einzubinden.\ Dort\ erfolgt\ \n\ die\ Initialisierung\ der\ Instanzvariablen\ indirekt\ \u00FCber\ diese\ Methode.\n\ \n
 comment3.params=
 comment3.target=java.lang.String\ getInformation()
 comment3.text=\n\ Die\ Methode\ getInformation()\ besitzt\ den\ R\u00FCckgabetyp\ String.\ Sie\ liefert\n\ die\ wichtigen\ Instanzattribute\ gesammelt\ als\ String\ zur\u00FCck.\ \n\ Auch\ hier\ m\u00FCssen\ die\ Integer\ nationGoals\ und\ nationPoints\ zu\ Strings\ \n\ umgewandelt\ werden,\ damit\ eine\ einheitliche\ R\u00FCckgabe\ m\u00F6glich\ ist.\n\ \n
-comment4.params=
-comment4.target=java.lang.String[]\ getInformationArray()
-comment4.text=\n\ Diese\ Methode\ ist\ der\ vorherigen\ sehr\ \u00E4hnlich.\ Beide\ liefern\ bei\ Aufruf\ die\ \n\ selben\ Informationen.\ Im\ Gegensatz\ zu\ getInformation()\ wird\ hier\ jedoch\ kein\ \n\ String\ zur\u00FCckgegeben,\ sondern\ ein\ Array\ mit\ Strings.\ Ich\ habe\ bewusst\ \n\ beide\ Methoden\ geschrieben,\ um\ in\ anderen\ Klassen\ je\ nach\ Bedarf\ auf\ eine\ \n\ der\ beiden\ Methoden\ zur\u00FCckgreifen\ zu\ k\u00F6nnen.\n\ \n\ nationName,\ nationGoals\ und\ nationPoints\ werden\ zum\ Array\ nationInfo\ mithilfe\n\ des\ Index\ hinzugef\u00FCgt(z.B.\ nationInfo[0]\=this.nationName;)\ und\ am\ Ende\ \n\ der\ Methode\ mit\ dem\ Returnstatement\ zur\u00FCckgegeben.\ Auch\ hier\ m\u00FCssen\ die\ Tore\n\ und\ Punkte\ in\ Strings\ umgewandelt\ werden.\ \n\ \n\ An\ dieser\ Stelle\ k\u00F6nnte\ auch\ eine\ ArrayList\ verwenden\ werden.\ Ich\ habe\ mich\ \n\ jedoch\ f\u00FCr\ ein\ Array\ entschieden,\ da\ die\ Anzahl\ der\ Instanzmerkmale\ fix\ ist\n\ und\ im\ Laufe\ des\ Spiels\ keine\ weiteren\ definiert\ und\ erg\u00E4nzt\ werden.\n\ \n
-comment5.params=newGoals\ newPoints
-comment5.target=java.lang.String\ setUpdatedInfo(int,\ int)
-comment6.params=goals
-comment6.target=java.lang.String\ setGameGoals(int)
-comment7.params=gameGoals
-comment7.target=java.lang.String\ getGameGoals(int)
-comment8.params=
-comment8.target=java.lang.String\ getGameInformation()
-comment9.params=
-comment9.target=int\ getGoalsNation()
-numComments=10
+comment4.params=newGoals\ newPoints
+comment4.target=java.lang.String\ setUpdatedInfo(int,\ int)
+comment4.text=\n\ Update\ der\ Punkte\ und\ Tore\ einer\ Nation\n\ \n
+comment5.params=goals
+comment5.target=java.lang.String\ setGameGoals(int)
+comment5.text=\n\ Die\ Tore\ einer\ Nation\ werden\ gesetzt\n\ \n
+numComments=6

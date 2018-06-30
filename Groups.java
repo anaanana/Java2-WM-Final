@@ -20,18 +20,6 @@ import java.util.ArrayList;
  *  Die Klasse Groups regelt die Datenverwaltung von Informationen zu teilnehmenden 
  *  Spielgruppen der Weltmeisterschaft. Sie bezieht sich teilweise auf Methoden 
  *  der Klasse Nation. 
- * 
- *  Folgende Methoden sind in der Klasse Groups implementiert:
- *  - setGroup();
- *  - containsNation(Object key);
- *  - getNationInformation(Object key);
- *  - getNationInformationArray(Object key);
- *  - getGroupSize();
- *  - addNationToGroup(String nationName, int nationGoals, int nationPoints);
- *  - getAllNations();
- *  - getGamePossibilities();
- *  - getAllNationsKey();
- *  
  */
 
 public class Groups
@@ -43,13 +31,16 @@ public class Groups
      * 1. Wichtige Eigenschaften einer Gruppe wie Gruppengröße und Gruppenname
      * 2. Eine HashMap mit Namen nations, in der der Key ein String und der 
      *    Value ein Objekt des Typs Nation ist
+     * 3. 2 ArrayLists results und gameResults, welche für die Spielergebnisse und Paarungen 
+     *    wichtig sind
      *    
      */ 
 
-    private int groupSize; // Gruppengröße als Datentyp Integer
-    private String groupName; // Gruppenname als Datentyp String
-    private HashMap<String, Nation> nations; // Key ist String, Value is Nation-Objekt
-    private ArrayList <String> gameResults;
+    private int groupSize;
+    private String groupName; 
+    private HashMap<String, Nation> nations; 
+    private ArrayList <String> gameResults; 
+    private ArrayList <String> results;
 
   
 
@@ -72,10 +63,11 @@ public class Groups
         this.groupName= groupName;
         nations = new HashMap<String,Nation>();
         gameResults = new ArrayList<>();
+        results = new ArrayList <>();
         setGroup();
     }
 
-    /* WIESO PRIVAT
+    /* 
      * Die Methode setGroup() besteht aus verschiedenen if-Abfragen, welche die 
      * Inhalte der HashMap nations über den Gruppennamen regeln. Im Konstruktor wird
      * über einen String Parameter der Gruppenname übergeben. Dieser Wert wird in 
@@ -159,6 +151,10 @@ public class Groups
         }
     }
 
+    /*
+     * Prüft, ob eine Nation (ein Key) in der HashMap ist.
+     * 
+     */
     public boolean containsNation (String nationName)
     {
         if (nations.containsKey(nationName))
@@ -221,7 +217,10 @@ public class Groups
         return getGroupSize();
     }
 
-    public int removeNationFromGroup(String nationName)
+    /*
+     * Eine Nation kann aus einer Gruppe entfernt werden.
+     * 
+     */public int removeNationFromGroup(String nationName)
     {
         nations.remove(nationName);
         return getGroupSize();
@@ -245,51 +244,7 @@ public class Groups
         return nationUpdate.setUpdatedInfo(newGoals, newPoints);
     }
 
-    public ArrayList <String> getAllNations(){
-        ArrayList <String> allNations = new ArrayList<>();
-        for (String key : nations.keySet())
-        {
-            allNations.add(key);
-        }
-        return allNations;
-    }
-
-    /*
-     * 
-     * 
-     * 
-     */
-
-    public ArrayList <String> getAllValues()
-    {
-        ArrayList <Nation> nationKeys = new ArrayList<>();
-        ArrayList <String> info = new ArrayList<>();
-        for (String key: nations.keySet()) {
-            nationKeys.add(nations.get(key));
-        }
-        for (int i = 0; i<nationKeys.size();i++) {
-            Nation values = nationKeys.get(i);
-            info.add(values.getInformation());
-        }
-        return info;
-    }
-
-    /*
-     * Die Methode getGamePossibilities berechnet alle möglichen Spiele innerhalb
-     * einer Spielgruppe. Dafür werden zwei ArrayLists benötigt. Die ArrayList 
-     * savedKeys bekommt die Werte der vorherigen Methode getAllNations() zugeordnet.
-     * Sie beinhaltet also alle Keys bzw. teilnehmenden Nationen. Eine zweite 
-     * ArrayList, die ebenfalls Strings beinhalten soll, wird erzeugt.
-     * 
-     * In einer äußeren For-Schleife wird ein Iterator i bis zur Anzahl von Einträgen
-     * der HashMap hochgezählt. Eine innere Schleife besitzt ebenfalls einen Iterator,
-     * der s=i+1 ist. Damit fängt die innere Schleife immer den nächsten Wert (i+1) 
-     * der HashMap ab. Solange i<nations.size() und s<nations.size(), werden in der 
-     * ArrayList nationKeyList die i und s entsprechenden Werte hinzugefügt. Gibt es 
-     * keinen nächsten Wert mehr (kein s), stoppen die Schleifen und in der Konsole 
-     * wird die ArrayList nationKeyList ausgegeben. 
-     * 
-     *  /*
+     /* 
      * Die Methode getAllNations() liefert eine ArrayList, in der alle Nationen 
      * beinhaltet sind. So kann man sich einen Überblick verschaffen, welche 
      * Nationen in einer Gruppe zu finden sind. 
@@ -309,7 +264,41 @@ public class Groups
      * zugelassen.
      * 
      */
+    
+    public ArrayList <String> getAllNations(){
+        ArrayList <String> allNations = new ArrayList<>();
+        for (String key : nations.keySet())
+        {
+            allNations.add(key);
+        }
+        return allNations;
+    }
 
+    /*
+     * Hier werden alle Werte der nations HashMap ausgegeben.
+     * 
+     */
+
+    public ArrayList <String> getAllValues()
+    {
+        ArrayList <Nation> nationKeys = new ArrayList<>();
+        ArrayList <String> info = new ArrayList<>();
+        for (String key: nations.keySet()) {
+            nationKeys.add(nations.get(key));
+        }
+        for (int i = 0; i<nationKeys.size();i++) {
+            Nation values = nationKeys.get(i);
+            info.add(values.getInformation());
+        }
+        return info;
+    }
+
+    /*
+     * Ein Spielergebnis wird in einer ArrayList gespeichert und die Nationeninformationen
+     * bekommen ein Update.
+     * 
+     */
+    
     public ArrayList <String> setResult(String nation1, String nation2, int goals1, int goals2)
     {
         ArrayList <String> savedKeys = new ArrayList<>();
@@ -318,6 +307,7 @@ public class Groups
         int points1=0;
         int points2=0;
 
+       
         if (goals1 > goals2) 
         {points1=3;}
         if (goals1 < goals2) 
@@ -348,6 +338,10 @@ public class Groups
 
     }
 
+     /*
+     * Die Resultate werden in einer ArrayList ausgegeben
+     * 
+     */
     public ArrayList <String> getResults()
     {
         String game = "";
@@ -359,12 +353,30 @@ public class Groups
         return results;
     }
 
+    
+     /*
+     * Die Methode getGamePossibilities berechnet alle möglichen Spiele innerhalb
+     * einer Spielgruppe. Dafür werden drei ArrayLists benötigt. Die ArrayList 
+     * savedKeys bekommt die Werte der vorherigen Methode getAllNations() zugeordnet.
+     * Sie beinhaltet also alle Keys bzw. teilnehmenden Nationen. Eine zweite 
+     * ArrayList, die ebenfalls Strings beinhalten soll, wird erzeugt.
+     * 
+     * In einer äußeren For-Schleife wird ein Iterator i bis zur Anzahl von Einträgen
+     * der HashMap hochgezählt. Eine innere Schleife besitzt ebenfalls einen Iterator,
+     * der s=i+1 ist. Damit fängt die innere Schleife immer den nächsten Wert (i+1) 
+     * der HashMap ab. Solange i<nations.size() und s<nations.size(), werden in der 
+     * ArrayList nationKeyList die i und s entsprechenden Werte hinzugefügt. Gibt es 
+     * keinen nächsten Wert mehr (kein s), stoppen die Schleifen und in der Konsole 
+     * wird die ArrayList pairings ausgegeben. 
+     * 
+     *  */
+    
     public ArrayList <String> getGamePossibilities()
+    
     {
         ArrayList <String> savedKeys = new ArrayList<>();
         ArrayList <Nation> nation = new ArrayList<>();
-        ArrayList <String> erste = new ArrayList<>();
-
+        ArrayList <String> pairings = new ArrayList<>();
 
         for (String key : nations.keySet())
         {
@@ -376,11 +388,11 @@ public class Groups
         for (int i=0; i<nations.size();i++){
             for(int s=i+1; s<nations.size();s++){ 
 
-                erste.add(savedKeys.get(i) + "  " + nation.get(i).getGameInformation() + " : " + nation.get(s).getGameInformation() + " " + savedKeys.get(s));
+                pairings.add(savedKeys.get(i) + " : " + savedKeys.get(s));
 
             }
         }
-        return erste;
+        return pairings;
     }
 
 }

@@ -1,14 +1,14 @@
 #BlueJ package file
-dependency1.from=Game
-dependency1.to=Groups
+dependency1.from=Groups
+dependency1.to=Nation
 dependency1.type=UsesDependency
-dependency2.from=Groups
-dependency2.to=Nation
+dependency2.from=Game
+dependency2.to=Groups
 dependency2.type=UsesDependency
-editor.fx.0.height=0
-editor.fx.0.width=0
-editor.fx.0.x=0
-editor.fx.0.y=0
+editor.fx.0.height=878
+editor.fx.0.width=1009
+editor.fx.0.x=173
+editor.fx.0.y=64
 objectbench.height=140
 objectbench.width=655
 package.divider.horizontal=0.6
